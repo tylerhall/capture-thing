@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PrefsWindowController" customModule="Capture" customModuleProvider="target">
+            <connections>
+                <outlet property="activeBrowserTabCheckbox" destination="6zY-JL-Bit" id="qdl-xr-GXz"/>
+                <outlet property="allBrowserTabsCheckbox" destination="gdS-xO-cnz" id="jH0-dG-TVT"/>
+                <outlet property="captureFolderPathControl" destination="nlG-2e-erT" id="KW8-92-v4o"/>
+                <outlet property="screenshotCheckbox" destination="bIn-AD-Gjd" id="mfA-YM-0Nt"/>
+                <outlet property="showShortcutKeyView" destination="ZyZ-fc-CoB" id="mh7-FV-ZtV"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="JVx-gp-NJ3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="PrefsWindowController" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="196" y="240" width="335" height="298"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="335" height="298"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzK-8a-D4A">
+                        <rect key="frame" x="289" y="67" width="150" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </stackView>
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nr3-9e-DVv">
+                        <rect key="frame" x="20" y="204" width="226" height="74"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1vl-10-1Dd">
+                                <rect key="frame" x="-2" y="58" width="101" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Capture Folder" id="hbd-so-cKh">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nlG-2e-erT">
+                                <rect key="frame" x="0.0" y="28" width="226" height="22"/>
+                                <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="Ugn-PS-kQr">
+                                    <font key="font" metaFont="system"/>
+                                    <url key="url" string="file://localhost/Applications/"/>
+                                </pathCell>
+                            </pathControl>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yuR-AS-a9z">
+                                <rect key="frame" x="-7" y="-7" width="133" height="32"/>
+                                <buttonCell key="cell" type="push" title="Choose Folder..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cXn-40-jin">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="chooseCaptureFolder:" target="-2" id="8d7-x2-Nzs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mDR-Hi-V44">
+                        <rect key="frame" x="18" y="157" width="141" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Show capture window:" id="Etx-AW-tTg">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZyZ-fc-CoB" customClass="MASShortcutView">
+                        <rect key="frame" x="165" y="147" width="150" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="6Jr-tU-2JU"/>
+                            <constraint firstAttribute="width" constant="150" id="G3c-QC-rcC"/>
+                        </constraints>
+                    </customView>
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTc-Ff-DOs">
+                        <rect key="frame" x="20" y="14" width="163" height="97"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p6e-Dg-rdF">
+                                <rect key="frame" x="-2" y="81" width="114" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Capture Defaults" id="sfu-Lx-sRr">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bIn-AD-Gjd">
+                                <rect key="frame" x="-2" y="56" width="95" height="18"/>
+                                <buttonCell key="cell" type="check" title="Screenshot" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OMr-LR-TkA">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="67o-5T-wqu" name="value" keyPath="values.kCaptureScreenshot" id="0ql-Km-4Z0"/>
+                                </connections>
+                            </button>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="T5v-bY-KKY">
+                                <rect key="frame" x="0.0" y="46" width="163" height="5"/>
+                            </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6zY-JL-Bit">
+                                <rect key="frame" x="-2" y="23" width="142" height="18"/>
+                                <buttonCell key="cell" type="check" title="Active Browser Tab" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OPX-H3-0If">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="activeBrowserCheckboxClicked:" target="-2" id="bc5-d7-EyD"/>
+                                    <binding destination="67o-5T-wqu" name="value" keyPath="values.kCaptureActiveTab" id="1bt-7r-rcG"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gdS-xO-cnz">
+                                <rect key="frame" x="-2" y="-1" width="127" height="18"/>
+                                <buttonCell key="cell" type="check" title="All Browser Tabs" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sED-Dy-OoM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="allBrowsersCheckboxClicked:" target="-2" id="j1E-Qg-cZM"/>
+                                    <binding destination="67o-5T-wqu" name="value" keyPath="values.kCaptureAllTabs" id="kqG-iE-voi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="T5v-bY-KKY" firstAttribute="leading" secondItem="aTc-Ff-DOs" secondAttribute="leading" id="QWw-ka-4hU"/>
+                            <constraint firstAttribute="trailing" secondItem="T5v-bY-KKY" secondAttribute="trailing" id="oyf-2g-0np"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fB-PU-vsD">
+                        <rect key="frame" x="18" y="127" width="332" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Press the hotkey twice to take a quick screenhot note." id="wof-IZ-MCW">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Nr3-9e-DVv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="0ao-i5-W2V"/>
+                    <constraint firstItem="mDR-Hi-V44" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="ZPy-BL-e0x"/>
+                    <constraint firstItem="ZyZ-fc-CoB" firstAttribute="leading" secondItem="mDR-Hi-V44" secondAttribute="trailing" constant="8" symbolic="YES" id="ZWe-l6-wbE"/>
+                    <constraint firstItem="mDR-Hi-V44" firstAttribute="top" secondItem="yuR-AS-a9z" secondAttribute="bottom" constant="31" id="caL-mm-59c"/>
+                    <constraint firstItem="aTc-Ff-DOs" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="eCQ-Aw-3de"/>
+                    <constraint firstItem="aTc-Ff-DOs" firstAttribute="top" secondItem="ZyZ-fc-CoB" secondAttribute="bottom" constant="36" id="gGn-Oq-3Kl"/>
+                    <constraint firstItem="ZyZ-fc-CoB" firstAttribute="top" secondItem="mDR-Hi-V44" secondAttribute="top" constant="-6" id="mn0-dn-YOO"/>
+                    <constraint firstItem="Nr3-9e-DVv" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="y3x-F6-Gwn"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="66.5" y="158"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="67o-5T-wqu"/>
+    </objects>
+</document>
