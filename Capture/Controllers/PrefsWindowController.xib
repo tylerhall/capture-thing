@@ -19,16 +19,12 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="PrefsWindowController" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="335" height="298"/>
+            <rect key="contentRect" x="196" y="240" width="439" height="298"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="335" height="298"/>
+                <rect key="frame" x="0.0" y="0.0" width="439" height="298"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzK-8a-D4A">
-                        <rect key="frame" x="289" y="67" width="150" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </stackView>
                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nr3-9e-DVv">
                         <rect key="frame" x="20" y="204" width="226" height="74"/>
                         <subviews>
@@ -159,6 +155,55 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzK-8a-D4A">
+                        <rect key="frame" x="211" y="67" width="86" height="44"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tmj-cP-08G">
+                                <rect key="frame" x="0.0" y="0.0" width="86" height="44"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-lj-Sbo">
+                                        <rect key="frame" x="-2" y="28" width="90" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Web Browser" id="JYk-sN-Mmi">
+                                            <font key="font" metaFont="systemBold"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G7E-m4-5rn">
+                                        <rect key="frame" x="-3" y="-4" width="87" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Safari" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ctb-xL-Abj" id="qei-mb-vhY">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="33e-Wl-UJd">
+                                                <items>
+                                                    <menuItem title="Safari" state="on" id="Ctb-xL-Abj"/>
+                                                    <menuItem title="Brave" tag="1" id="2Il-Qv-xW0"/>
+                                                    <menuItem title="Chrome" tag="2" id="ofC-ov-ch1"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <binding destination="67o-5T-wqu" name="selectedTag" keyPath="values.kBrowser" id="OxT-xh-wyt"/>
+                                        </connections>
+                                    </popUpButton>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Nr3-9e-DVv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="0ao-i5-W2V"/>
@@ -171,7 +216,7 @@
                     <constraint firstItem="Nr3-9e-DVv" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="y3x-F6-Gwn"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="66.5" y="158"/>
+            <point key="canvasLocation" x="118.5" y="158"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="67o-5T-wqu"/>
     </objects>

@@ -14,8 +14,86 @@ import AppKit
 class CaptureThing {
 
     static let shared = CaptureThing()
+    
+    lazy var getAllTabsScriptSafari: NSAppleScript = {
+       let script = """
+        set outList to {}
+        tell application "Safari"
+            repeat with w in windows
+                repeat with t in (tabs of w)
+                    set theTitle to name of t
+                    copy theTitle to end of outList
+                    set theURL to URL of t
+                    copy theURL to end of outList
+                end repeat
+            end repeat
+        end tell
 
-    lazy var getAllTabsScript: NSAppleScript = {
+        return outList
+        """
+        let appleScript = NSAppleScript(source: script)
+        appleScript?.compileAndReturnError(nil)
+        return appleScript!
+    }()
+
+    lazy var getActiveTabsScriptSafari: NSAppleScript = {
+       let script = """
+        set outList to {}
+        tell application "Safari"
+            set theTitle to the name of current tab of first window
+            copy theTitle to end of outList
+            set theURL to the URL of current tab of first window
+            copy theURL to end of outList
+        end tell
+
+        return outList
+        """
+        let appleScript = NSAppleScript(source: script)
+        appleScript?.compileAndReturnError(nil)
+        return appleScript!
+    }()
+
+    lazy var getAllTabsScriptChrome: NSAppleScript = {
+       let script = """
+        set outList to {}
+
+        tell application "Google Chrome"
+            repeat with w in windows
+                repeat with t in (tabs of w)
+                    set theTitle to title of t
+                    copy theTitle to end of outList
+                    set theURL to URL of t
+                    copy theURL to end of outList
+                end repeat
+            end repeat
+        end tell
+
+        return outList
+        """
+        let appleScript = NSAppleScript(source: script)
+        appleScript?.compileAndReturnError(nil)
+        return appleScript!
+    }()
+
+    lazy var getActiveTabsScriptChrome: NSAppleScript = {
+       let script = """
+        set outList to {}
+
+        tell application "Google Chrome"
+            set theTitle to title of active tab of first window
+            copy theTitle to end of outList
+            set theURL to URL of active tab of first window
+            copy theURL to end of outList
+        end tell
+
+        return outList
+        """
+        let appleScript = NSAppleScript(source: script)
+        appleScript?.compileAndReturnError(nil)
+        return appleScript!
+    }()
+
+    lazy var getAllTabsScriptBrave: NSAppleScript = {
         let script = """
         set outList to {}
 
@@ -37,7 +115,7 @@ class CaptureThing {
         return appleScript!
     }()
 
-    lazy var getActiveTabScript: NSAppleScript = {
+    lazy var getActiveTabScriptBrave: NSAppleScript = {
         let script = """
         set outList to {}
 
@@ -54,6 +132,12 @@ class CaptureThing {
         appleScript?.compileAndReturnError(nil)
         return appleScript!
     }()
+    
+    enum Browser: Int {
+        case Safari = 0
+        case Brave = 1
+        case Chrome = 2
+    }
 
     struct Settings {
         var summary: String
@@ -247,7 +331,18 @@ extension CaptureThing {
     }
 
     func makeActiveBrowserTab() -> String {
-        let eventDescriptor = getActiveTabScript.executeAndReturnError(nil)
+        guard let browser = Browser(rawValue: UserDefaults.standard.integer(forKey: kBrowser)) else { return "" }
+        
+        var eventDescriptor: NSAppleEventDescriptor
+        switch browser {
+        case .Safari:
+            eventDescriptor = getActiveTabsScriptSafari.executeAndReturnError(nil)
+        case .Brave:
+            eventDescriptor = getActiveTabScriptBrave.executeAndReturnError(nil)
+        case .Chrome:
+            eventDescriptor = getActiveTabsScriptChrome.executeAndReturnError(nil)
+        }
+
         guard let listDescriptor = eventDescriptor.coerce(toDescriptorType: typeAEList) else { return "" }
         guard listDescriptor.numberOfItems > 0 else { return "" }
 
@@ -264,7 +359,18 @@ extension CaptureThing {
     }
 
     func makeAllBrowserTabs() -> String {
-        let eventDescriptor = getAllTabsScript.executeAndReturnError(nil)
+        guard let browser = Browser(rawValue: UserDefaults.standard.integer(forKey: kBrowser)) else { return "" }
+        
+        var eventDescriptor: NSAppleEventDescriptor
+        switch browser {
+        case .Safari:
+            eventDescriptor = getAllTabsScriptSafari.executeAndReturnError(nil)
+        case .Brave:
+            eventDescriptor = getAllTabsScriptBrave.executeAndReturnError(nil)
+        case .Chrome:
+            eventDescriptor = getAllTabsScriptChrome.executeAndReturnError(nil)
+        }
+
         guard let listDescriptor = eventDescriptor.coerce(toDescriptorType: typeAEList) else { return "" }
         guard listDescriptor.numberOfItems > 0 else { return "" }
 

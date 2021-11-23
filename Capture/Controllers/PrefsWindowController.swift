@@ -12,6 +12,7 @@ let kCaptureScreenshot = "kCaptureScreenshot"
 let kCaptureActiveTab = "kCaptureActiveTab"
 let kCaptureAllTabs = "kCaptureAllTabs"
 let kCapturePath = "kCapturePath"
+let kBrowser = "kBrowser"
 
 class PrefsWindowController: NSWindowController {
     
