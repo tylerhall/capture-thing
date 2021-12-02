@@ -273,8 +273,10 @@ extension CaptureThing {
         if let filenames = takeScreenshots(folderURL: attachmentsDir), filenames.count > 0 {
             var i = 1
             for filename in filenames {
-                outStr += "![Screenshot \(i)](attachments/\(filename))\n"
-                i += 1
+                if let escaped = filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+                    outStr += "![Screenshot \(i)](attachments/\(escaped))\n"
+                    i += 1
+                }
             }
             outStr += "\n"
         }
@@ -293,11 +295,13 @@ extension CaptureThing {
         var outStr = "### Attachments\n"
         for srcURL in attachments {
             do {
-                let fn = "\(sortingKey) \(unixTimestamp)" + srcURL.lastPathComponent
-                var destURL = attachmentsDir
-                destURL.appendPathComponent(fn)
-                try FileManager.default.copyItem(at: srcURL, to: destURL)
-                outStr += "* [\(srcURL.lastPathComponent)](attachments/\(fn))\n"
+                let fn = ("\(sortingKey) \(unixTimestamp)" + srcURL.lastPathComponent)
+                if let escaped = fn.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+                    var destURL = attachmentsDir
+                    destURL.appendPathComponent(fn)
+                    try FileManager.default.copyItem(at: srcURL, to: destURL)
+                    outStr += "* [\(srcURL.lastPathComponent)](attachments/\(escaped))\n"
+                }
             } catch {
 
             }
